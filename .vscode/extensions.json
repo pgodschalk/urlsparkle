@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "charliermarsh.ruff",
+    "ms-azuretools.vscode-docker",
+    "irongeek.vscode-env",
+    "sidneys1.gitconfig",
+    "github.vscode-github-actions",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "redhat.vscode-yaml"
+  ]
+}

@@ -1,0 +1,45 @@
+---
+services:
+  urlsparkle:
+    image: ghcr.io/pgodschalk/urlsparkle:${APP_VERSION:-latest-dev}
+    build:
+      context: ./backend
+    environment:
+      - PROJECT_NAME=urlsparkle
+      - POSTGRES_DB=${POSTGRES_DB:-urlsparkle}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-changethis}
+      - POSTGRES_PORT=${POSTGRES_PORT:-5432}
+      - POSTGRES_SERVER=${POSTGRES_HOST:-postgresql}
+      - POSTGRES_USER=${POSTGRES_USER:-urlsparkle}
+    ports:
+      - 127.0.0.1:${APP_PORT:-8000}:8080
+    volumes:
+      - ./backend:/home/worker
+      - /home/worker/.venv # This excludes the venv from being mounted
+    restart: on-failure:5
+    healthcheck:
+      test: ["CMD", "curl", "-I", "--fail", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+      start_period: 5s
+    security_opt:
+      - no-new-privileges:true
+
+  postgresql:
+    image: postgres:17
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-urlsparkle}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-changethis}
+      - POSTGRES_USER=${POSTGRES_USER:-urlsparkle}
+    ports:
+      - 127.0.0.1:${POSTGRES_PORT:-5432}:5432
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+    restart: on-failure:5
+    shm_size: 128mb
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  postgresql:
