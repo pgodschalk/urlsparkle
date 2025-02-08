@@ -19,16 +19,12 @@ license = { file = "LICENSE.txt" }
 [dependency-groups]
 dev = [
   "coverage>=7.6.10",
-  "mypy>=1.14.1",
   "pre-commit>=4.1.0",
   "pytest>=8.3.4",
   "pytest-subtests>=0.14.1",
   "ruff>=0.9.3",
 ]
 
-[tool.mypy]
-strict = true
-exclude = ["venv", ".venv", "alembic"]
 
 [tool.pytest.ini_options]
 # Add the current directory to Python's path
