@@ -18,21 +18,23 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Biome CLI
-        uses: biomejs/setup-biome@v2
+        uses: biomejs/setup-biome@c016c38f26f2c4a6eb3662679143614a254263fd # v2.3.0
 
       - name: Set up ruff
-        uses: astral-sh/ruff-action@v3
+        uses: astral-sh/ruff-action@39f75e526a505e26a302f8796977b50c13720edf # v3.2.1
 
       - name: Run Biome
         run: biome ci
 
       - name: Run markdownlint
-        uses: DavidAnson/markdownlint-cli2-action@v19
+        uses: DavidAnson/markdownlint-cli2-action@05f32210e84442804257b2a6f20b273450ec8265 # v19.1.0
         with:
           globs: "**/*.md"
 
@@ -54,16 +56,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
+        uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2.0.1
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@4574d27a4764455b42196d70a065bc6853246a25 # v3.4.0
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@f7ce87c1d6bead3e36075b2ce75da1f6cc28aaca # v3.9.0
 
       - name: Log in to the Container registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -71,7 +73,7 @@ jobs:
 
       - id: meta-dev
         name: Docker meta (development)
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@369eb591f429131d6889c46b94e711f089e6ca96 # v5.6.1
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
@@ -80,7 +82,7 @@ jobs:
 
       - id: meta-prod
         name: Docker meta (production)
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@369eb591f429131d6889c46b94e711f089e6ca96 # v5.6.1
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
@@ -88,7 +90,7 @@ jobs:
             type=raw,value=${{ github.sha }}
 
       - name: Build (development)
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@0adf9959216b96bec444f325f1e493d4aa344497 # v6.14.0
         with:
           annotations: ${{ steps.meta-dev.outputs.annotations }}
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache-dev
@@ -111,7 +113,7 @@ jobs:
           bunx @redocly/cli@latest lint openapi.json
 
       - name: Build and push (development)
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@0adf9959216b96bec444f325f1e493d4aa344497 # v6.14.0
         with:
           annotations: ${{ steps.meta-dev.outputs.annotations }}
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache-dev
@@ -126,7 +128,7 @@ jobs:
 
       - id: build-prod
         name: Build and push (production)
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@0adf9959216b96bec444f325f1e493d4aa344497 # v6.14.0
         with:
           annotations: ${{ steps.meta-prod.outputs.annotations }}
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
