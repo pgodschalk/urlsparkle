@@ -149,6 +149,7 @@ jobs:
       - if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         name: Build documentation
         run: |
+          mkdir _site
           cp openapi.json _site/openapi.json
           bunx @redocly/cli@latest build-docs openapi.json -o _site/index.html
 
