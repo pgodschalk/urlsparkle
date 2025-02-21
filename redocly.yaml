@@ -1,0 +1,60 @@
+---
+extends:
+  - recommended
+
+rules:
+  no-ambiguous-paths: off
+  no-server-example.com: off
+  operation-2xx-response: off
+  operation-4xx-response: off
+
+  rule/health-endpoint:
+    subject:
+      type: Paths
+    assertions:
+      required:
+        - "/healthz"
+    message: API must have a health endpoint.
+
+  rule/health-media-type:
+    subject:
+      type: MediaTypesMap
+    assertions:
+      const: application/health+json
+    where:
+      - subject:
+          type: PathItem
+          matchParentKeys: "/healthz"
+        assertions:
+          defined: true
+      - subject:
+          type: Response
+          filterInParentKeys:
+            - "200"
+            - "400"
+        assertions:
+          defined: true
+    message: API Health response has media type `application/health+json`
+    severity: error
+
+  rule/health-schema-status:
+    where:
+      - subject:
+          type: PathItem
+          matchParentKeys: "/healthz"
+        assertions:
+          defined: true
+      - subject:
+          type: Response
+          filterInParentKeys:
+            - "200"
+            - "400"
+        assertions:
+          defined: true
+    subject:
+      type: SchemaProperties
+    assertions:
+      required:
+        - status
+    message: API Health response must have a required property `status`
+    severity: error

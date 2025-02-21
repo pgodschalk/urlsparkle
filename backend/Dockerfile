@@ -45,7 +45,7 @@ COPY app/ app/
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
 EXPOSE 8080
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD ["curl", "-I",  "--fail", "http://localhost:8080/healthz"]
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 CMD ["curl", "--fail", "http://localhost:8080/healthz"]
 
 
 

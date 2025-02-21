@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime
-from typing import Optional
+from typing import Dict, List, Literal, Optional
 
 from pydantic import BaseModel, Field, HttpUrl
 
@@ -65,3 +65,11 @@ class ShortURLStatsResponse(BaseModel):
             ]
         }
     }
+
+
+class HealthCheckResponse(BaseModel):
+    status: Literal["pass", "fail"]
+
+
+class ReadyCheckResponse(HealthCheckResponse):
+    checks: Dict[str, List[Dict[str, str]]]

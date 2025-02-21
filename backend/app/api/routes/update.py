@@ -19,6 +19,7 @@ router = APIRouter(prefix="/update", tags=["update"])
         401: {"description": "The provided update ID does not exist"},
         412: {"description": "The provided url is invalid"},
     },
+    openapi_extra={"security": []},
 )
 def update_url(
     request: ShortURLUpdate, session: SessionDep, update_id: str

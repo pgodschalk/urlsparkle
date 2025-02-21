@@ -42,6 +42,7 @@ def increment_redirect_count(shortcode: str, session: SessionDep) -> None:
     summary="Redirect to original URL",
     description="Redirects to the original URL based on the provided shortcode.",
     responses={404: {"description": "Shortcode not found"}},
+    openapi_extra={"security": []},
 )
 async def redirect(
     shortcode: str, session: SessionDep, background_tasks: BackgroundTasks

@@ -12,6 +12,7 @@ router = APIRouter(prefix="", tags=[""])
     response_model=ShortURLStatsResponse,
     status_code=status.HTTP_200_OK,
     responses={404: {"description": "Shortcode not found"}},
+    openapi_extra={"security": []},
 )
 def stats(shortcode: str, session: SessionDep) -> ShortURLStatsResponse:
     if not shortcode:

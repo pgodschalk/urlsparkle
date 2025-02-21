@@ -17,7 +17,12 @@ if settings.SENTRY_DSN and settings.ENVIRONMENT != "local":
 app = FastAPI(
     title=settings.PROJECT_NAME,
     openapi_url=f"{settings.API_V1_STR}/openapi.json",
+    servers=[{"url": "http://localhost:8000"}],
     generate_unique_id_function=custom_generate_unique_id,
+    license_info={
+        "name": "MIT License",
+        "url": "https://opensource.org/licenses/MIT",
+    },
 )
 
 # Set all CORS enabled origins

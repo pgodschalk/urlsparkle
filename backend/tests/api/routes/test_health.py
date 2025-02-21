@@ -8,14 +8,17 @@ class TestIntegration:
         self,
         client: TestClient,
     ) -> None:
-        response = client.head(f"{settings.API_V1_STR}/healthz")
-        assert response.status_code == 204
-        assert response.text == ""
+        response = client.get(f"{settings.API_V1_STR}/healthz")
+        assert response.status_code == 200
+        assert response.text == '{"status": "pass"}'
 
     def test_it_returns_204_when_calling_readyz(
         self,
         client: TestClient,
     ) -> None:
-        response = client.head(f"{settings.API_V1_STR}/readyz")
-        assert response.status_code == 204
-        assert response.text == ""
+        response = client.get(f"{settings.API_V1_STR}/readyz")
+        assert response.status_code == 200
+        assert (
+            response.text
+            == '{"status": "pass", "checks": {"postgres:connections": [{"status": "pass"}]}}'
+        )

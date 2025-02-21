@@ -69,6 +69,7 @@ def validate_shortcode(shortcode: str) -> str:
         409: {"description": "Shortcode already in use"},
         412: {"description": "The provided shortcode/url is invalid"},
     },
+    openapi_extra={"security": []},
 )
 def shorten(request: ShortURLCreate, session: SessionDep) -> ShortURLCreateResponse:
     # Use provided shortcode or generate one
