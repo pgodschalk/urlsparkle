@@ -1,12 +1,14 @@
 {
   "recommendations": [
+    "biomejs.biome",
     "charliermarsh.ruff",
-    "ms-azuretools.vscode-docker",
-    "irongeek.vscode-env",
-    "sidneys1.gitconfig",
+    "DavidAnson.vscode-markdownlint",
     "github.vscode-github-actions",
+    "irongeek.vscode-env",
+    "ms-azuretools.vscode-docker",
     "ms-python.python",
     "ms-python.vscode-pylance",
-    "redhat.vscode-yaml"
+    "redhat.vscode-yaml",
+    "sidneys1.gitconfig"
   ]
 }
