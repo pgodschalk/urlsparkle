@@ -104,7 +104,8 @@ jobs:
         run: |
           docker compose up -d postgresql
           APP_VERSION=${{ github.sha }} docker compose run urlsparkle alembic upgrade head
-          APP_VERSION=${{ github.sha }} docker compose run urlsparkle pytest
+          APP_VERSION=${{ github.sha }} docker compose up -d
+          APP_VERSION=${{ github.sha }} docker compose exec urlsparkle pytest
 
           curl -o openapi.json http://localhost:8000/openapi.json
           bunx @redocly/cli@latest lint openapi.json
