@@ -39,6 +39,17 @@ services:
       - postgresql:/var/lib/postgresql/data
     restart: on-failure:5
     shm_size: 128mb
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "--dbname=${POSTGRES_DB:-urlsparkle}",
+          "--username=${POSTGRES_USER:-urlsparkle}",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     security_opt:
       - no-new-privileges:true
 
