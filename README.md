@@ -4,6 +4,10 @@
 
 <!-- PROJECT SHIELDS -->
 
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 [![MIT][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
@@ -13,7 +17,14 @@
   <h3 align="center">@pgodschalk/urlsparkle</h3>
 
   <p align="center">
-    An URL-shortening API
+    An URL-shortening API made for an engineering assessment
+    <br />
+    <a href="https://pgodschalk.github.io/urlsparkle/"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/pgodschalk/urlsparkle/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    ·
+    <a href="https://github.com/pgodschalk/urlsparkle/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -38,6 +49,7 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -66,12 +78,12 @@ To get a local copy up and running follow these simple example steps.
 - [Python](https://python.org)
   ```sh
   asdf plugin add python
-  asdf install python 3.13.3 && asdf global python 3.13.3
+  asdf install python 3.13.2
   ```
 - [uv](https://docs.astral.sh/uv/)
   ```sh
   asdf plugin add uv
-  asdf install uv latest && asdf global uv latest
+  asdf install uv latest && asdf set -h uv latest
   ```
 - [Postgres](https://www.postgresql.org)
 
@@ -192,9 +204,33 @@ There are a few things that can be improved:
 - [ ] Use database triggers to handle updating the `last_redirect` field
       instead of handling this at the application level (out of scope for now).
 - [ ] Add a frontend :)
-
+- [ ] Fix the `pytest` warnings about the `session.query()` being deprecated.
+      Blocked by [sqlmodel#909](https://github.com/fastapi/sqlmodel/issues/909)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Top contributors:
+
+<a href="https://github.com/pgodschalk/urlsparkle/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=pgodschalk/urlsparkle" alt="contrib.rocks image" />
+</a>
 
 <!-- LICENSE -->
 
@@ -214,9 +250,25 @@ Project Link: [https://github.com/pgodschalk/urlsparkle](https://github.com/pgod
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- ACKNOWLEDGMENTS -->
+
+## Acknowledgments
+
+- [_FastAPI_](https://fastapi.tiangolo.com)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
+[contributors-shield]: https://img.shields.io/github/contributors/pgodschalk/urlsparkle.svg?style=for-the-badge
+[contributors-url]: https://github.com/pgodschalk/urlsparkle/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/pgodschalk/urlsparkle.svg?style=for-the-badge
+[forks-url]: https://github.com/pgodschalk/urlsparkle/network/members
+[stars-shield]: https://img.shields.io/github/stars/pgodschalk/urlsparkle.svg?style=for-the-badge
+[stars-url]: https://github.com/pgodschalk/urlsparkle/stargazers
+[issues-shield]: https://img.shields.io/github/issues/pgodschalk/urlsparkle.svg?style=for-the-badge
+[issues-url]: https://github.com/pgodschalk/urlsparkle/issues
 [license-shield]: https://img.shields.io/github/license/pgodschalk/urlsparkle?style=for-the-badge
 [license-url]: https://github.com/pgodschalk/urlsparkle/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
