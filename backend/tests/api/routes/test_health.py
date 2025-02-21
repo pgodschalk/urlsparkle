@@ -4,21 +4,21 @@ from app.core.config import settings
 
 
 class TestIntegration:
-    def test_it_returns_204_when_calling_healthz(
+    def test_it_returns_200_when_calling_healthz(
         self,
         client: TestClient,
     ) -> None:
         response = client.get(f"{settings.API_V1_STR}/healthz")
         assert response.status_code == 200
-        assert response.text == '{"status": "pass"}'
+        assert response.json() == {"status": "pass"}
 
-    def test_it_returns_204_when_calling_readyz(
+    def test_it_returns_200_when_calling_readyz(
         self,
         client: TestClient,
     ) -> None:
         response = client.get(f"{settings.API_V1_STR}/readyz")
         assert response.status_code == 200
-        assert (
-            response.text
-            == '{"status": "pass", "checks": {"postgres:connections": [{"status": "pass"}]}}'
-        )
+        assert response.json() == {
+            "status": "pass",
+            "checks": {"postgres:connections": [{"status": "pass"}]},
+        }
