@@ -5,7 +5,7 @@
 {
   "file_types": {
     "env": ["**/.env.example"],
-    "JSONC": ["**.vscode", "**/.vscode_global/*.json"]
+    "JSONC": ["**/.devcontainer/*.json", "**.vscode/*.json"]
   },
   "file_scan_exclusions": [
     ".coverage",
@@ -17,6 +17,20 @@
     "__pycache__"
   ],
   "languages": {
+    "JSON": {
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      }
+    },
+    "JSONC": {
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      }
+    },
     "Python": {
       "language_servers": ["pyright", "ruff"],
       "format_on_save": "on",
