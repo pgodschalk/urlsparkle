@@ -115,7 +115,7 @@ To get a local copy up and running follow these simple example steps.
 The easiest way is to use a GitHub Codespace. This will automatically set up
 the environment and run migrations.
 
-[![Open in Visual Studio Codespaces](./images/codespaces.png)]
+![Open in Visual Studio Codespaces](./images/codespaces.png)
 
 Running a development server:
 
@@ -254,7 +254,7 @@ Project Link: [https://github.com/pgodschalk/urlsparkle](https://github.com/pgod
 
 ## Acknowledgments
 
-- [_FastAPI_](https://fastapi.tiangolo.com)
+- [FastAPI](https://fastapi.tiangolo.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
