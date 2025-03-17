@@ -90,7 +90,7 @@ jobs:
             type=raw,value=${{ github.sha }}
 
       - name: Build (development)
-        uses: docker/build-push-action@0adf9959216b96bec444f325f1e493d4aa344497 # v6.14.0
+        uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6.15.0
         with:
           annotations: ${{ steps.meta-dev.outputs.annotations }}
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache-dev
@@ -113,7 +113,7 @@ jobs:
           bunx @redocly/cli@latest lint openapi.json
 
       - name: Build and push (development)
-        uses: docker/build-push-action@0adf9959216b96bec444f325f1e493d4aa344497 # v6.14.0
+        uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6.15.0
         with:
           annotations: ${{ steps.meta-dev.outputs.annotations }}
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache-dev
@@ -128,7 +128,7 @@ jobs:
 
       - id: build-prod
         name: Build and push (production)
-        uses: docker/build-push-action@0adf9959216b96bec444f325f1e493d4aa344497 # v6.14.0
+        uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6.15.0
         with:
           annotations: ${{ steps.meta-prod.outputs.annotations }}
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
